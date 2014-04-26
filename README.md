@@ -14,6 +14,7 @@ Requirements
 1. Install the python modules `lxml` and `requests`.
 1. Edit `crowd_test2.py` and `crowd_test.py` to match the server url and auth tokens (for testing).
 1. Copy `usr/local/bin/mkuser` to `/usr/local/bin`
+2. Run `pam-auth-update` and enable "PAM_Python Module with pam_crowd.py".  Save the config.
 1. Add `session required pam_exec.so /usr/local/bin/mkuser` to the top of `/etc/pam.d/common-session`
 1. Create a user in Crowd, and try logging in as them (should work as a native TTY login, or even ssh!)
 

@@ -28,6 +28,7 @@ session	required			pam_permit.so
 # See "man pam_umask".
 session optional			pam_umask.so
 # and here are more per-package modules (the "Additional" block)
+session	required	pam_unix.so 
 session	sufficient 	pam_python.so pam_crowd.py use_first_pass debug
 # end of pam-auth-update config
 

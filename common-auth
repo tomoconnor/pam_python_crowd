@@ -14,6 +14,7 @@
 # pam-auth-update(8) for details.
 
 # here are the per-package modules (the "Primary" block)
+auth	[success=2 default=ignore]	pam_unix.so nullok_secure
 auth	sufficient 	pam_python.so pam_crowd.py use_first_pass debug
 # here's the fallback if no module succeeds
 auth	requisite			pam_deny.so

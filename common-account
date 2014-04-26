@@ -14,6 +14,7 @@
 #
 
 # here are the per-package modules (the "Primary" block)
+account	[success=2 new_authtok_reqd=done default=ignore]	pam_unix.so 
 account	sufficient 	pam_python.so pam_crowd.py use_first_pass debug
 # here's the fallback if no module succeeds
 account	requisite			pam_deny.so

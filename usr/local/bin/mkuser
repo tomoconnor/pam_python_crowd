@@ -1,0 +1,8 @@
+#!/bin/sh
+[ "$PAM_TYPE" = "open_session" ] || exit 0
+if [ -d "/home/$PAM_USER" ]
+  then
+   exit 0
+fi
+echo -e '\n' | adduser -q $PAM_USER
+

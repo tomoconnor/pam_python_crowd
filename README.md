@@ -1,6 +1,15 @@
 pam_python_crowd
 ================
 
+This is a mechanism for logging into a Linux computer using Atlassian's Crowd authentication server.  I've only really tested it on Ubuntu 13.10, although it *ought* to work on any PAM-based system.
+
+It's the result of a saturday's hacking, and is pretty much just a proof-of-concept, and probably ***Unwise to use in Production*** environments.
+
+I really need to write a libnss module to allow `getpwname` to use Atlassian for retrieving user and group information.
+
+Currently, if the user doesn't have a matching account in /etc/passwd, one will be created via potentially unsafe use of `pam_exec.so`.
+
+
 Requirements
 ------------
 

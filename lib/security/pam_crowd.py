@@ -12,6 +12,9 @@ def auth_log(msg):
   syslog.syslog("pam_python.so %s" % msg)
   syslog.closelog()
 
+def verify_user(username):
+  r = requests.get(URL_ROOT+"user.json?username=%s"% username, auth=(AUTH_USER, AUTH_PASS))
+  return r.status_code == 200 and r.json()['active']
 
 def pam_sm_authenticate(pamh, flags, argv):
   try:
@@ -66,3 +69,7 @@ def pam_sm_close_session(pamh, flags, argv):
 
 def pam_sm_chauthtok(pamh, flags, argv):
   return pamh.PAM_SUCCESS
+
+if __name__ == '__main__':
+  import sys
+  print verify_user(sys.argv[1])

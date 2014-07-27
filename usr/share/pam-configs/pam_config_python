@@ -3,6 +3,7 @@ Default: no
 Priority: 0
 Auth-Type: Primary
 Auth:
+  required pam_exec.so /usr/local/bin/mkuser
 	sufficient 	pam_python.so pam_crowd.py use_first_pass debug
 Auth-Initial:
 	sufficient 	pam_python.so pam_crowd.py use_first_pass debug

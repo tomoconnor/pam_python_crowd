@@ -9,6 +9,7 @@ I really need to write a libnss module to allow `getpwname` to use Atlassian for
 
 Currently, if the user doesn't have a matching account in /etc/passwd, one will be created via potentially unsafe use of `pam_exec.so`.
 
+NOTE: If the user doesn't yet exist locally, it will be created -- however, it will fail to auth until a second try at login. This is due to PAM not noticing when a user is created mid-authorization.
 
 Requirements
 ------------
@@ -20,10 +21,10 @@ Requirements
 1. Copy `usr/share/pam-configs/pam_config_python` into `/usr/share/pam-configs`
 1. Create a generic Application in Crowd, remember the application name and password for the next step.
 1. Edit lib/security/pam_crowd.py to set your crowd server's URL and application auth tokens.
+1. Copy lib/security/pam_crowd.py to /lib/security
 1. Install the python modules `lxml` and `requests`.
 1. Edit `crowd_test2.py` and `crowd_test.py` to match the server url and auth tokens (for testing).
 1. Copy `usr/local/bin/mkuser` to `/usr/local/bin`
-2. Run `pam-auth-update` and enable "PAM_Python Module with pam_crowd.py".  Save the config.
-1. Add `session required pam_exec.so /usr/local/bin/mkuser` to the top of `/etc/pam.d/common-session`
+1. Run `pam-auth-update` and enable "PAM_Python Module with pam_crowd.py".  Save the config.
 1. Create a user in Crowd, and try logging in as them (should work as a native TTY login, or even ssh!)
 
